@@ -6,13 +6,18 @@ import org.junit.jupiter.api.Test;
  */
 class LCATest {
 
+	//Test the creation of the LCA Datatype
 	@Test
-	public void testFail() {
-		fail("Not yet implemented");
+	public void testCreation() {
+		LowestCommonAncestor lca = new LowestCommonAncestor();
+		assertEquals("","","lca Not Created");
 	}
 
+	//Test the creation of a head node on the LCA Datatype
 	@Test
-	public void testPass() {
-		assertEquals(0,0,"Implemented");
+	public void testHead() {
+		LowestCommonAncestor lca = new LowestCommonAncestor();
+		lca.createHead('a', 0);
+		assertEquals('a',lca.returnKey(lca.head),"Head not Created");
 	}
 }
