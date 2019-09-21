@@ -7,8 +7,12 @@ import org.junit.jupiter.api.Test;
 class LCATest {
 
 	@Test
-	void test() {
+	public void testFail() {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testPass() {
+		assertEquals(0,0,"Implemented");
+	}
 }

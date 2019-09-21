@@ -5,11 +5,9 @@ public class LowestCommonAncestor {
 		// TODO Auto-generated method stub
 
 	}
-	
 	/*
 	 * Sourced LCA Algorithim and Binary Tree code from @awarde96
 	 */
-	
 	public Node head;
 	
 	//Node class to represent Nodes of the binary tree with left, right and parent nodes as well as a key represented by a character
