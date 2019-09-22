@@ -1,10 +1,7 @@
+import LowestCommonAncestor.Node;
 
 public class LowestCommonAncestor {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 	/*
 	 * Sourced LCA Algorithim and Binary Tree code from @awarde96
 	 */
