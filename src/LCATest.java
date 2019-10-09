@@ -95,4 +95,13 @@ class LCATest {
 		assertEquals(lca.findNode('f'),lca.lowestCommonAncestor(lca.findNode('c'), 
 				lca.findNode('d'), lca.findNode('h')),"Failure at d and h");
 	}
+	
+	//Test the DAG structure constructor and Vertices finder
+	@Test
+	public void testDAGVertices() {
+		DAG dag = new DAG(5);
+		assertEquals(' ',' ',"DAG not created");
+		int vertices = dag.V();
+		assertEquals(5,vertices,"Did not count the correct vertices");
+	}
 }
