@@ -104,4 +104,37 @@ class LCATest {
 		int vertices = dag.V();
 		assertEquals(5,vertices,"Did not count the correct vertices");
 	}
+	
+	//Testing adding edges
+	@Test
+	public void testAddEdges() {
+		DAG dag = new DAG(10);
+		assertEquals(dag.addEdge(0, 0),false,"Loop created 0-0");
+		assertEquals(dag.addEdge(0, 1),true,"Failed at adding valid edge(0,1)");
+		assertEquals(dag.addEdge(1, 0),false,"Loop created 1-0-1");
+		assertEquals(dag.addEdge(0, 2),true,"Failed at adding valid edge(0,2)");
+		assertEquals(dag.addEdge(0, 11),false,"Added to a non-existent node 0-11");
+		assertEquals(dag.addEdge(11, 12),false,"Added 2 non-existent nodes 11-12");
+		assertEquals(dag.addEdge(1, 3),true,"Failed at adding valid edge(1,3)");
+		assertEquals(dag.addEdge(2, 4),true,"Failed at adding valid edge(2,3)"); //NOTE: not a loop, directed
+		assertEquals(dag.addEdge(4, 0),false,"Created loop 0-2-4-0");
+
+	}
+	
+	//
+	@Test
+	public void test3() {
+		
+	}
+	
+	//
+	@Test
+	public void test4() {
+		
+	}
+	
+	
+	
+	
+	
 }
