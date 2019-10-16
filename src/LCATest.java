@@ -1,4 +1,7 @@
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 /*
@@ -99,7 +102,7 @@ class LCATest {
 	//Test the DAG structure constructor and Vertices finder
 	@Test
 	public void testDAGVertices() {
-		DAG dag = new DAG(5);
+		dag dag = new dag(5);
 		assertEquals(' ',' ',"DAG not created");
 		int vertices = dag.V();
 		assertEquals(5,vertices,"Did not count the correct vertices");
@@ -108,7 +111,7 @@ class LCATest {
 	//Testing adding edges
 	@Test
 	public void testAddEdges() {
-		DAG dag = new DAG(10);
+		dag dag = new dag(10);
 		assertEquals(dag.addEdge(0, 0),false,"Loop created 0-0");
 		assertEquals(dag.addEdge(0, 1),true,"Failed at adding valid edge(0,1)");
 		assertEquals(dag.addEdge(1, 0),false,"Loop created 1-0-1");
@@ -123,18 +126,73 @@ class LCATest {
 	
 	//
 	@Test
-	public void test3() {
+	public void testAdj(){
+		dag dag1 = new dag(5);
 		
+		assertTrue("Testing empty adj list", dag1.adj(0).isEmpty());
+		
+		ArrayList<Integer> expectedResult = new ArrayList<Integer>();
+		
+		//Testing single edge adj list
+		expectedResult.add(2);
+		dag1.addEdge(1, 2);
+		
+		assertTrue("Testing single edge adj list", dag1.adj(1).size() == expectedResult.size());
+		for(int i : expectedResult){
+			assertTrue("Testing single edge adj list", dag1.adj(1).contains(i));
+		}
+		
+		expectedResult.clear();
+		
+		expectedResult.add(3);
+		expectedResult.add(4);
+		
+		dag1.addEdge(2, 3);
+		dag1.addEdge(2, 4);
+		
+		assertTrue("Testing multi-edge adj list", dag1.adj(2).size() == expectedResult.size());
+		for(int i : expectedResult){
+			assertTrue("Testing multi-edge adj list", dag1.adj(2).contains(i));
+		}
 	}
 	
 	//
 	@Test
-	public void test4() {
+	public void testLCAonDAG() {
 		
-	}
-	
-	
-	
-	
-	
+		dag dag1 = new dag(10);
+		
+		dag1.addEdge(0, 2);
+		dag1.addEdge(0, 1);
+		dag1.addEdge(1, 3);
+		dag1.addEdge(3, 4);
+		dag1.addEdge(4, 5);
+		dag1.addEdge(1, 6);
+		dag1.addEdge(6, 7);
+		dag1.addEdge(7, 8);
+		dag1.addEdge(7, 9);
+		
+		ArrayList<Integer> testArray = new ArrayList<Integer>();
+		testArray.add(0);
+				
+		assertTrue("Testing single lca return", dag1.lowestCommonAncestor(2,1).size() == testArray.size());
+		for(int i : testArray){
+			assertTrue("Testing single lca return", dag1.lowestCommonAncestor(2,1).contains(i));
+		}
+		testArray.clear();
+		testArray.add(1);
+		
+		assertTrue("Testing double lca return", dag1.lowestCommonAncestor(8,5).size() == testArray.size());
+		for(int i : testArray){
+			assertTrue("Testing double lca return", dag1.lowestCommonAncestor(8,5).contains(i));
+		}
+		testArray.clear();
+		testArray.add(7);
+		
+		assertTrue("Testing double lca return", dag1.lowestCommonAncestor(8,9).size() == testArray.size());
+		for(int i : testArray){
+			assertTrue("Testing double lca return", dag1.lowestCommonAncestor(8,9).contains(i));
+		}
+		testArray.clear();
+	}	
 }
